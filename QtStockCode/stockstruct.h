@@ -1,11 +1,14 @@
 #ifndef STOCKSTRUCT_H
 #define STOCKSTRUCT_H
 #include <string>
-#include <iostream>
+#include <string.h>
+#include <QString>
 using namespace std;
 typedef struct structStock{
     string s_StockName;
     string s_StockCode;
+    string t_date;
+    string t_time;
     float d_totalnum;
     float d_totalcurrency;
     float d_yesterday_closed_price;
@@ -33,30 +36,31 @@ typedef struct structStock{
     float d_buy_4_total;
     float d_buy_5_price;
     float d_buy_5_total;
-    string t_date;
-    string t_time;
-//     7: 外盘
-//     8: 内盘
-//    29: 最近逐笔成交
-//    30: 时间
-//    31: 涨跌
-//    32: 涨跌%
-//    33: 最高
-//    34: 最低
-//    35: 价格/成交量（手）/成交额
-//    36: 成交量（手）
-//    37: 成交额（万）
-//    38: 换手率
-//    39: 市盈率
-//    40:
-//    41: 最高
-//    42: 最低
-//    43: 振幅
-//    44: 流通市值
-//    45: 总市值
-//    46: 市净率
-//    47: 涨停价
-//    48: 跌停价
+    float d_outmarket;
+    float d_inmarket;
+    float d_increase;
+    float d_increasepercent;
+    float d_exchangeratio;
+    float d_peratio;
+    float d_amp;
+    float d_maketvalue;
+    float d_totalmaketvalue;
+    float d_pbratio;
+    float d_limitupprice;
+    float d_limitdownprice;
+    structStock(){
+        memset(this,0,sizeof(structStock));
+    }
 }StockStruct;
-
+class CStock
+{
+public:
+    CStock();
+public:
+    void convertSinaHTTPtxtToStruct(QString &txt);
+    void convertgtImgHTTPtxtToStruct(QString &txt);
+    void ShowStockStruct();
+private:
+    StockStruct m_stockstruct;
+};
 #endif // STOCKSTRUCT_H

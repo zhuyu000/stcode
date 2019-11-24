@@ -4,6 +4,7 @@
 #include <QString>
 namespace StockUtils {
     StockStruct convertSinaHTTPtxtToStruct(QString &txt);
+    StockStruct convertgtImgHTTPtxtToStruct(QString &txt);
     void ShowStockStruct(StockStruct &ss);
 }
 #endif // UTILS_H
