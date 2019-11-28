@@ -12,7 +12,9 @@ void CStock::convertSinaHTTPtxtToStruct(QString &txt)
     StockStruct &outstruct = m_stockstruct;
     QStringList list = txt.split("\"");
     QString corestr = list[1];
+    if(list.size()<2) return;
     QStringList corelist = corestr.split(",");
+    if(corelist.size()<32) return;
     outstruct.s_StockName = corelist[0].toStdString() ;
     outstruct.d_today_open_price = corelist[1].toFloat();
     outstruct.d_yesterday_closed_price = corelist[2].toFloat();
@@ -51,8 +53,10 @@ void CStock::convertgtImgHTTPtxtToStruct(QString &txt)
 {
     StockStruct &outstruct = m_stockstruct;
     QStringList list = txt.split("\"");
+    if(list.size()<2) return;
     QString corestr = list[1];
     QStringList corelist = corestr.split("~");
+    if(corelist.size()<49) return;
     outstruct.s_StockName = corelist[1].toStdString();
     outstruct.s_StockCode = corelist[2].toStdString();
     outstruct.t_date = corelist[30].mid(0,8).toStdString();
@@ -96,6 +100,16 @@ void CStock::convertgtImgHTTPtxtToStruct(QString &txt)
     outstruct.d_pbratio = corelist[46].toFloat();
     outstruct.d_limitupprice = corelist[47].toFloat();
     outstruct.d_limitdownprice = corelist[48].toFloat();
+}
+
+void CStock::convert163dayKItermToStruct(QString &txt)
+{
+    StockStruct &outstruct = m_stockstruct;
+    QStringList list = txt.split("\"");
+    if(list.size()<2) return;
+    QString corestr = list[1];
+    QStringList corelist = corestr.split("~");
+    if(corelist.size()<49) return;
 }
 
 void CStock::ShowStockStruct()

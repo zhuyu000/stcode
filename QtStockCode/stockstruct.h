@@ -59,6 +59,7 @@ public:
 public:
     void convertSinaHTTPtxtToStruct(QString &txt);
     void convertgtImgHTTPtxtToStruct(QString &txt);
+    void convert163dayKItermToStruct(QString &txt);
     void ShowStockStruct();
 private:
     StockStruct m_stockstruct;

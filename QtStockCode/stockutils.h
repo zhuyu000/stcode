@@ -3,8 +3,6 @@
 #include <stockstruct.h>
 #include <QString>
 namespace StockUtils {
-    StockStruct convertSinaHTTPtxtToStruct(QString &txt);
-    StockStruct convertgtImgHTTPtxtToStruct(QString &txt);
-    void ShowStockStruct(StockStruct &ss);
+    QString QueryFromURL(QString &URL);
 }
 #endif // UTILS_H
