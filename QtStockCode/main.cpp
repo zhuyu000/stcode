@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     QString baseUrl = "http://quotes.money.163.com/service/chddata.html?code=0600756&start=20160101&end=20171231&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER;TCAP;MCAP";
 //    QString baseUrl = "http://qt.gtimg.cn/q=sz000750";
     QString strUnicode = StockUtils::QueryFromURL(baseUrl);
+    StockUtils::ParseURLCode(strUnicode);
     qDebug() << strUnicode;
     CStock testclass;
     testclass.convertgtImgHTTPtxtToStruct(strUnicode);

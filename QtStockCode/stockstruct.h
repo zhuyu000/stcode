@@ -9,8 +9,8 @@ typedef struct structStock{
     string s_StockCode;
     string t_date;
     string t_time;
-    float d_totalnum;
-    float d_totalcurrency;
+    long long d_totalnum;
+    long long d_totalcurrency;
     float d_yesterday_closed_price;
     float d_today_open_price;
     float d_current_price;
@@ -43,8 +43,8 @@ typedef struct structStock{
     float d_exchangeratio;
     float d_peratio;
     float d_amp;
-    float d_maketvalue;
-    float d_totalmaketvalue;
+    long long d_maketvalue;
+    long long d_totalmaketvalue;
     float d_pbratio;
     float d_limitupprice;
     float d_limitdownprice;
@@ -61,6 +61,8 @@ public:
     void convertgtImgHTTPtxtToStruct(QString &txt);
     void convert163dayKItermToStruct(QString &txt);
     void ShowStockStruct();
+    StockStruct getstockstruct() const;
+
 private:
     StockStruct m_stockstruct;
 };

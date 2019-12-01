@@ -105,11 +105,24 @@ void CStock::convertgtImgHTTPtxtToStruct(QString &txt)
 void CStock::convert163dayKItermToStruct(QString &txt)
 {
     StockStruct &outstruct = m_stockstruct;
-    QStringList list = txt.split("\"");
-    if(list.size()<2) return;
-    QString corestr = list[1];
-    QStringList corelist = corestr.split("~");
-    if(corelist.size()<49) return;
+    QStringList list = txt.split(",");
+    if(list.size()<15) return;
+    outstruct.t_date = list[0].toStdString();
+    outstruct.s_StockCode = list[1].mid(1,list[1].size()-1).toStdString();
+    outstruct.s_StockName = list[2].toStdString();
+    outstruct.d_current_price = list[3].toFloat();
+    outstruct.d_today_max_price = list[4].toFloat();
+    outstruct.d_today_min_price = list[5].toFloat();
+    outstruct.d_today_open_price = list[6].toFloat();
+    outstruct.d_yesterday_closed_price = list[7].toFloat();
+    outstruct.d_increase = list[8].toFloat();
+    outstruct.d_increasepercent = list[9].toFloat();
+    outstruct.d_exchangeratio = list[10].toFloat();
+    outstruct.d_totalnum = list[11].toFloat();
+    outstruct.d_totalcurrency = list[12].toFloat();
+    outstruct.d_totalmaketvalue = list[13].toFloat();
+    outstruct.d_maketvalue = list[14].toFloat();
+    outstruct.t_time = "15:00:00";
 }
 
 void CStock::ShowStockStruct()
@@ -158,4 +171,9 @@ void CStock::ShowStockStruct()
     qDebug()<<"市净率:\t\t"<<ss.d_pbratio;
     qDebug()<<"涨停价:\t\t"<<ss.d_limitupprice;
     qDebug()<<"跌停价:\t\t"<<ss.d_limitdownprice;
+}
+
+StockStruct CStock::getstockstruct() const
+{
+    return m_stockstruct;
 }
